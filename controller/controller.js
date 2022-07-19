@@ -3,7 +3,6 @@ const User=require("../models/User")
 const bcrypt=require("bcrypt")
 const jwt = require("jsonwebtoken")
 const dotenv = require("dotenv");
-{
 
 
 //register
@@ -21,7 +20,7 @@ router.post("/register", async(req,res)=>{
           });
           console.log(user,"user");
           return res.status(200).json({
-            message: "succes",
+            message: "success",
           });
         } catch (error) {
             console.log(error)
@@ -49,7 +48,7 @@ router.post("/login",async(req,res)=>{
 const token = await jwt.sign({userid:user.id},"mynameisrituvendramishrajabalpur")
 const setToken =  await User.findOneAndUpdate({_id:user.id},{$set:{token:token}})
 // console.log(token)
-const userver=await jwt.verify(token,"mynameisrituvendramishrajabalpur")
+// const userver=await jwt.verify(token,"mynameisrituvendramishrajabalpur")
 // console.log(userver)
 res.status(200).json({"accessToken":token,"user":user})
 
@@ -62,7 +61,9 @@ res.status(500).json(err)
 
 })
 
+router.get("/getUserData",async(req,res)=>{
+  let token = req.headers["authorization"];
+})
 
 
-}
 module.exports=router

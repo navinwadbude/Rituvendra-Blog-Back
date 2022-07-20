@@ -1,12 +1,3 @@
-const router=require("express").Router()
-const User=require("../models/User")
-const bcrypt=require("bcrypt")
-const jwt = require("jsonwebtoken")
-const dotenv = require("dotenv");
-const { verifyToken } = require('../middleware/verfifyToken')
-const {router} = require("../routes/authrouter.js")
-
-//register
 router.post("/register", async(req,res)=>{
     try{
       dotenv.config();
@@ -77,6 +68,5 @@ res.status(500).json(err)
 router.get("/getUserData", verifyToken,async(req,res)=>{
   console.log('===========>',req.userId )
 })
-
 
 module.exports=router

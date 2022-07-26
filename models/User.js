@@ -16,7 +16,11 @@ const UserSchema = new mongoose.Schema({
     token:{
         type:String,
         default:null
-    }
+    },
+    refresh_token: {
+        type: String,
+        min: 6,
+      },
 },
     
 );
